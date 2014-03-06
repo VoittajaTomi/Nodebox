@@ -11,6 +11,7 @@
     "mongodb" : "*",
     "mongoskin" : "*",
     "lodash" : "*",
-    "angular" : "*"
+    "angular" : "*",
+    "gridfs-stream" : "*"
   }
 }

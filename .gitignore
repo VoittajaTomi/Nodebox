@@ -1,2 +1,4 @@
 /system/node_modules/*
 /system/uploads/*
+/system/config.js
+*~
