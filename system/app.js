@@ -8,7 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-
+var ObjectId = require('mongodb').ObjectID;
 var fs = require('fs');
 
 var mongoose = require('mongoose');
@@ -69,7 +69,7 @@ app.post('/file-upload',function(req, res){
   console.log("--->" + file.path);
   //fs.createReadStream(file.path).pipe(fs.createWriteStream(newPath)).on("close",function(){
   fs.createReadStream(file.path).pipe(gfs.createWriteStream({filename:file.originalFilename})).on("close",function(){
-    res.redirect("back");
+    res.redirect("/");
   });
   
   
@@ -87,6 +87,51 @@ app.get('/uploads.json',function(req,res){
   
 });
 
+app.get("/:file_id/info.json",function(req,res){
+  
+  
+  
+  var file_id = req.params.file_id;
+
+  var files;
+
+  gfs.files.find({_id:ObjectId(file_id)}).toArray(function (err,files){
+    this.files = files[0];
+    
+    if(err)
+      console.log(files);
+  });
+  console.log(this.files);
+  res.send(this.files);
+  
+});
+
+app.get("/:file_id/download",function(req,res){
+  
+  var file_id = req.params.file_id;
+
+  var files;
+
+  gfs.files.find({_id:ObjectId(file_id)}).toArray(function (err,files){
+    this.files = files[0];
+    
+    if(err)
+      console.log(files);
+  });
+  //console.log("--> "+ObjectId(""+this.files._id));
+  //console.log("user wants file: "+this.files.filename);
+  var instream = gfs.createReadStream({_id: this.files._id});
+
+  res.setHeader("Content-Type",this.files.contentType);
+  res.setHeader("Content-Length", this.files.length);
+  res.setHeader('Content-disposition', 'attachment; filename=\"' + this.files.filename+"\"");
+  instream.pipe(res);
+
+  //res.send(this.files._id);
+  
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
