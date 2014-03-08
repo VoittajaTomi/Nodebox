@@ -114,18 +114,23 @@ app.get("/:file_id/download",function(req,res){
 
   gfs.files.find({_id:ObjectId(file_id)}).toArray(function (err,files){
     this.files = files[0];
-    
+   
+    var instream = gfs.createReadStream({_id: this.files._id});
+
     if(err)
       console.log(files);
+    else {
+      res.setHeader("Content-Type",this.files.contentType);
+      res.setHeader("Content-Length", this.files.length);
+      res.setHeader('Content-disposition', 'attachment; filename=\"' + this.files.filename+"\"");
+      instream.pipe(res);
+    }
+      
+
   });
   //console.log("--> "+ObjectId(""+this.files._id));
   //console.log("user wants file: "+this.files.filename);
-  var instream = gfs.createReadStream({_id: this.files._id});
 
-  res.setHeader("Content-Type",this.files.contentType);
-  res.setHeader("Content-Length", this.files.length);
-  res.setHeader('Content-disposition', 'attachment; filename=\"' + this.files.filename+"\"");
-  instream.pipe(res);
 
   //res.send(this.files._id);
   
