@@ -12,6 +12,9 @@
     "mongoskin" : "*",
     "lodash" : "*",
     "angular" : "*",
-    "gridfs-stream" : "*"
+    "gridfs-stream" : "*",
+    "passport" : "*",
+    "util" : "*",
+    "passport-google" : "*"
   }
 }

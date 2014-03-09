@@ -8,12 +8,29 @@
 <script src="js/bootstrap.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dropzone.css" rel="stylesheet">
+<link href="css/system.css" rel="stylesheet">
 </head>
 <body>
 
+<nav class="navbar">
+  <div class="navbar navbar-default">
+  <a class="navbar navbar-brand">Nodebox</a>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="/login">Sign in</a></li>
+
+
+      </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <form action="/file-upload" class="dropzone" 
 id="my-awesome-dropzone"></form>
+<div class="container">
 <ul id="file-list" class="nav nav-pills"></ul>
+</div>
 </body>
 </html>
 

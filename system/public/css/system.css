@@ -1,0 +1,24 @@
+/* set the background-color to red */
+.navbar-default
+{
+    background-color: #3B5998;
+    /* remove the gradient */
+    background-image: none;
+    /* set font color to white */
+    color: white;
+}   
+
+.navbar-brand
+{
+ 
+  color: white;
+}
+/* menu items */
+
+    /* set the background of the menu items to pink and default color to white */
+
+    .navbar .brand 
+    {
+        background-color: orange;
+        color: navy;
+    }
