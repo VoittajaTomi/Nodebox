@@ -3,6 +3,7 @@ Nodebox
 A Node.js application for uploading and sharing files securely.
 
 Installation
+=======
 1. Clone repo
 
 2. $ npm install
