@@ -12,4 +12,4 @@ Installation
 
 var config = {}; config.mongoose = "mongodb://[mongo_user]:[password]@[db-server]/mydb"; module.exports = config;
 
-4. Enjoy!
+Enjoy!
